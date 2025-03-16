@@ -3,24 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Risk Management Dashboard</title>
+    <title>Coding Challenge 15: Risk Management Dashboard</title>
     <style>
-        header, footer, main {
+        header, footer {
             text-align: center;
         }
+        form, main {
+            text-align: center;
+        }
+        .risk-card {
+            width: auto;
+            height: auto;
+            padding: 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: lightblue;
+            text-align: center;
+        }
+
     </style>
 </head>
 <body>
     <header>
         <h1>Risk Management Dashboard</h1>
     </header>
-    
+
     <!-- Task 1: Base Structure Setup -->
+    <form id="riskForm">
+        <input id="riskNameInput" type="text" placeholder="Enter Risk Item" required>
+        <input type="text" id="departmentInput" placeholder="Enter Department" required>
+        <select id="riskLevelSelect">
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+        </select>
+        <button id="submitButton">Submit</button>
+    </form>
+
     <main>
-        <div id="riskDashboard">
-            <input type="text" id="inputForm">
-            <button id="submitButton">Submit</button>
-        </div>
+        <div id="riskDashboard"></div>
     </main>
 
     <footer>
