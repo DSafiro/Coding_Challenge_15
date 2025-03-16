@@ -20,6 +20,17 @@ function addRiskItem (riskName, riskLevel, department) {
     riskCard.appendChild(levelLabel); // Appends level label to risk card
     riskCard.appendChild(departmentParagraph); // Appends department paragraph to risk card
 
+    // Task 3: Removing Risk Items
+    const resolveButton = document.createElement("button"); // Creates button for resolving risk card
+    resolveButton.textContent = "Resolve"; // Adds resolve text to button
+
+    resolveButton.addEventListener("click", (event) => { // When resolve button is clicked => removes card from risk dashboard
+        riskDashboard.removeChild(riskCard);
+        event.stopPropagation(); // Prevents bubbling from parent container
+    });
+
+    riskCard.appendChild(resolveButton); // Appends resolve button to risk card
+
     riskDashboard.appendChild(riskCard); // Appends risk card to dashboard
 }; // Function to add risk item
 
@@ -31,10 +42,11 @@ riskForm.addEventListener("submit", (event) => { // When submit is clicked -> cr
     const department = document.getElementById("departmentInput").value; // Grabs department from input
     const riskLevel = document.getElementById("riskLevelSelect").value; // Grabs risk level from selected choice
 
-    addRiskItem(riskName, riskLevel, department); // Adds new risk item
-    riskForm.reset(); // Resets fields to blank
+    addRiskItem(riskName, riskLevel, department); // Calls function to add new risk item
+    riskForm.reset(); // Resets input fields to blank
 }); // Creates new risk card when submitted
 
 // Test Cases
 addRiskItem("Data Breach", "High", "IT");
 addRiskItem("Supply Chain Disruption", "Medium", "Operations");
+addRiskItem("Market Fluctuations", "High", "Finance");
