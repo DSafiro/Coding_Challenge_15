@@ -31,6 +31,15 @@ function addRiskItem (riskName, riskLevel, department) {
 
     riskCard.appendChild(resolveButton); // Appends resolve button to risk card
 
+    // Task 4: Risk Categorization
+    if (riskLevel === "Low") { // If risk level equals low -> sets risk card to green
+        riskCard.classList.add("low-level");
+    } else if (riskLevel === "Medium") { // If risk level equals medium -> sets risk card to yellow
+        riskCard.classList.add("medium-level");
+    } else if (riskLevel === "High") { // If risk level equals high -> sets risk card to red
+        riskCard.classList.add("high-level");
+    };
+
     riskDashboard.appendChild(riskCard); // Appends risk card to dashboard
 }; // Function to add risk item
 
@@ -50,3 +59,5 @@ riskForm.addEventListener("submit", (event) => { // When submit is clicked -> cr
 addRiskItem("Data Breach", "High", "IT");
 addRiskItem("Supply Chain Disruption", "Medium", "Operations");
 addRiskItem("Market Fluctuations", "High", "Finance");
+addRiskItem("Cybersecurity Threat", "High", "IT");
+addRiskItem("HR Compliance Issue", "Low", "Human Resources");
