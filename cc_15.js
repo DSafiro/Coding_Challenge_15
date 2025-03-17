@@ -26,7 +26,7 @@ function addRiskItem (riskName, riskLevel, department) {
 
     resolveButton.addEventListener("click", (event) => { // When resolve button is clicked => removes card from risk dashboard
         riskDashboard.removeChild(riskCard);
-        event.stopPropagation(); // Prevents bubbling from parent container
+        event.stopPropagation(); // Prevents bubbling from risk dashboard (Task 6)
     });
 
     riskCard.appendChild(resolveButton); // Appends resolve button to risk card
@@ -39,6 +39,12 @@ function addRiskItem (riskName, riskLevel, department) {
     } else if (riskLevel === "High") { // If risk level equals high -> sets risk card to red
         riskCard.classList.add("high-level");
     };
+
+    // Task 6: Event Propagation Fix
+    riskCard.addEventListener("click", (event) => { // When risk card is clicked -> console logs risk card has been clicked
+        console.log("Risk card has been clicked.");
+        event.stopPropagation(); // Prevents dashboard wide event from occurring
+    });
 
     riskDashboard.appendChild(riskCard); // Appends risk card to dashboard
 }; // Function to add risk item
@@ -75,7 +81,7 @@ increaseRiskLevelsButton.addEventListener("click", () => { // If increase risk l
             riskCard.classList.add("high-level"); // Applies high level class
         };
     }); 
-}); // Updates tickets when button is clicked
+}); // Updates risk cards when button is clicked
 
 // Test Cases
 addRiskItem("Data Breach", "High", "IT");
