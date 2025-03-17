@@ -55,9 +55,32 @@ riskForm.addEventListener("submit", (event) => { // When submit is clicked -> cr
     riskForm.reset(); // Resets input fields to blank
 }); // Creates new risk card when submitted
 
+// Task 5: Bulk Risk Updates
+const increaseRiskLevelsButton = document.getElementById("increaseRiskLevelsButton");
+
+increaseRiskLevelsButton.addEventListener("click", () => { // If increase risk levels button is clicked -> increases the risk level of every card by one level
+    const riskCardsList = document.querySelectorAll(".risk-card"); // Selects all cards with risk card class
+    const riskCardsArray = [...riskCardsList]; // Converts list of risk cards into an array
+
+    riskCardsArray.forEach(riskCard => { 
+        const riskLevelLabel = riskCard.querySelector("label"); // Identifies level label in risk card
+
+        if (riskLevelLabel.textContent === "Low") { // If level equals low when pressed -> increases level to medium and applies medium level class
+            riskLevelLabel.textContent = "Medium"; // Replaces text with medium
+            riskCard.classList.remove("low-level"); // Removes low level class
+            riskCard.classList.add("medium-level"); // Applies medium level class
+        } else if (riskLevelLabel.textContent === "Medium") { // If level equals medium when pressed -> increases level to high and applies high level class
+            riskLevelLabel.textContent = "High"; // Replaces text with high
+            riskCard.classList.remove("medium-level"); // Removes medium level class
+            riskCard.classList.add("high-level"); // Applies high level class
+        };
+    }); 
+}); // Updates tickets when button is clicked
+
 // Test Cases
 addRiskItem("Data Breach", "High", "IT");
 addRiskItem("Supply Chain Disruption", "Medium", "Operations");
 addRiskItem("Market Fluctuations", "High", "Finance");
 addRiskItem("Cybersecurity Threat", "High", "IT");
 addRiskItem("HR Compliance Issue", "Low", "Human Resources");
+addRiskItem("Employee Retention", "Low", "HR");
